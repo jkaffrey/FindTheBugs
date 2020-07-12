@@ -17,6 +17,14 @@ app.get('/', function (req, res) {
   res.render('index.ejs');
 })
 
+// The route will render when we go  to localhost:3000/bugs/showall
+// The page should show all of the bugs that we have found and reported
+app.get('/bugs/showall', function (req, res) {
+  res.render('showall.ejs', {
+    allOfOurData : databaseEntries // send all the information in our databaseEntries to the client with a name of allOfOurData
+  });
+})
+
 // This route will render one of our bug objects and all the data associated with it
 // This route ALWAYS NEEDS TO BE THE LAST ROUTE in this file otherwise it can break other routes.
 app.get('/bugs/:id', function(req, res) {
@@ -24,14 +32,6 @@ app.get('/bugs/:id', function(req, res) {
     singularBug : databaseEntries[req.params.id],
     id : req.params.id
   })
-})
-
-// The route will render when we go  to localhost:3000/bugs/showall
-// The page should show all of the bugs that we have found and reported
-app.get('/bugs/showall', function (req, res) {
-  res.render('showall.ejs', {
-    allOfOurData : databaseEntries // send all the information in our databaseEntries to the client with a name of allOfOurData
-  });
 })
 
 // This route will render a page with a form for generating new bugs

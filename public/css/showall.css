@@ -1,0 +1,26 @@
+.page-title {
+  padding-top: 20px;
+}
+
+
+.card {
+  max-width: 100%;
+  min-width: 100%;
+  box-shadow: 5px 10px 25px #888888;
+}
+
+
+.resolution {
+  position: absolute;
+  right: 20px;
+  display: inline-block;
+}
+
+.card-title > a {
+  color: white;
+  text-decoration: underline;
+}
+
+a:active {
+  color: white;
+}

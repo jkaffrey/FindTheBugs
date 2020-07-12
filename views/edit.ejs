@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Find The Bugs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/edit.css">
+</head>
+
+<body>
+  <!-- Setup the navigation bar header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <a class="navbar-brand" href="#">Find The Bugs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/bugs/showall">Show All Bugs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/bugs/new">Report A Bug</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Setup the body for bootstrap to use -->
+  <div class="container">
+    <form class="new-bug-form-main" action="/bugs/<%= id %>/edit?_method=PUT" method="post">
+      <div class="form-group">
+        <label for="title">Bug Title</label>
+        <input type="text" class="form-control" id="title" name="title" value="<%= singularBugEntry.title %>">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="repoduceSteps">Repoduction Steps (optional)</label>
+        <textarea class="form-control" id="repoduceSteps" name="repoduceSteps" rows="3" value="<%= singularBugEntry.repoduceSteps %>"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="developer">Developer</label>
+        <input type="text" class="form-control" id="developer" name="developer" value="<%= singularBugEntry.developer %>" required>
+      </div>
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <select class="form-control" id="priority" name="priority" value="<%= singularBugEntry.priority %>" required>
+          <% if (singularBugEntry.priority === 'Low') {%>
+          <option selected>Low</option>
+          <% } else if (singularBugEntry.priority === 'Medium') {%>
+          <option selected>Medium</option>
+          <% } else if (singularBugEntry.priority === 'High') {%>
+          <option selected>High</option>
+          <% } %>
+        </select>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="true" id="resolved" name="resolved">
+        <label class="form-check-label" for="resolved">
+          Resolved
+        </label>
+      </div>
+      <input type="submit" class="btn btn-primary">
+    </form>
+  </div>
+</body>
+
+</html>

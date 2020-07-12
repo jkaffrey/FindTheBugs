@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Find The Bugs</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/show.css">
+</head>
+
+<body>
+  <!-- Setup the navigation bar header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-info">
+    <a class="navbar-brand" href="#">Find The Bugs</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/bugs/showall">Show All Bugs</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/bugs/new">Report A Bug</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <!-- Setup the body for bootstrap to use -->
+  <div class="container">
+    <div class="row information">
+      <div class="col-md-9">
+        <h3 class="page-title"><%= singularBug.title %></h3>
+        <br />
+        <h5> Description: <%= singularBug.description %></h5>
+        <br /><br /><br />
+        <div>
+          Reproduction Steps: (optional)
+          <% if (singularBug.repoduceSteps) { %>
+          <div>
+            <% for (let i = 0; i < singularBug.repoduceSteps.length; i++) { %>
+              <div><%= singularBug.repoduceSteps[i] %></div>
+            <% } %>
+          </div>
+        <% } %>
+        </div>
+        <br />
+        <div>
+          Picture (optional):
+          <% if (singularBug.picture != '') { %>
+            <img src="<%= singularBug.picture %>" alt="bug image" />
+          <% } %>
+        </div>
+      </div>
+      <div class="col-md-3 details">
+        <div>Developer: <%= singularBug.developer %></div>
+        <div>Priority: <%= singularBug.priority %></div>
+        <div>Resolved: <%= singularBug.resolved === true ? 'Fixed' : 'In Dev' %></div>
+        <div class="buttons">
+          <a class="btn btn-info" href="/bugs/<%= id %>/edit">Edit</a>
+          <form action='/bugs/<%= id %>?_method=DELETE' method='post'>
+            <input type="submit" class="btn btn-danger" value="Delete">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

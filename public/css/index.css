@@ -1,0 +1,9 @@
+.welcome {
+  width: 75%;
+  background-color: #2f2f2f2f;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 5px 10px 5px #888888;
+  margin: auto;
+  margin-top: 50px;
+}
